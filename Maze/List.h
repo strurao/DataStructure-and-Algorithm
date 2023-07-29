@@ -44,6 +44,30 @@ public:
 		}
 	}
 	
+	/*
+	임의접근 함수
+
+	특정 노드 위치가 저장이 되어있을 때만 임의접근이 빠르다.
+	연결리스트의 특성상 특정 노드 위치가 저장되어있지 않다면 
+	선형탐색을 해야하므로 시간복잡도가 O(N)이기 때문이다.
+	*/
+	Node* GetNode(int index)
+	{
+		Node* node = _head->next;
+		if (node == _tail)
+			return nullptr;
+
+		for (int i = 0; i < index; i++)
+		{
+			if (node == _tail->prev)
+				return nullptr;
+
+			node = node->next;
+		}
+
+		return node;
+	}
+
 	void Print()
 	{
 		Node* node = _head->next; // cursor
@@ -105,6 +129,34 @@ public:
 		_tail->prev = node;
 
 		return node;
+	}
+
+	//                   [node]
+	// [dummy]<->[prevNode]<->[posNode]<->[3]<->[dummy]
+	// [head]                                   [tail]
+	void Insert(Node* posNode, int data)
+	{
+		Node* node = new Node(data);
+		Node* prevNode = posNode->prev;
+
+		prevNode->next = node;
+		node->prev = prevNode;
+		node->next = posNode;
+		posNode->prev = node;
+	}
+
+	// [dummy]<->[prevNode]<->[node]<->[nextNode]<->[3]<->[dummy]
+	// [head]                                             [tail]
+	Node* Remove(Node* node)
+	{
+		Node* prevNode = node->prev;
+		Node* nextNode = node->next;
+		prevNode->next = nextNode;
+		nextNode->prev = prevNode;
+
+		delete node;
+
+		return nextNode;
 	}
 
 private:
