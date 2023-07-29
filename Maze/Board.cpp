@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Board.h"
+#include "Player.h"
 
 const char* TILE = "■";
 
@@ -7,9 +8,10 @@ Board::Board() {}
 
 Board::~Board() {}
 
-void Board::Init(int32 size)
+void Board::Init(int32 size, Player* player)
 {
 	_size = size;
+	_player = player;
 	GenerateMap();
 }
 
@@ -31,17 +33,86 @@ void Board::Render()
 	}
 }
 
+// Binary Tree 미로 생성 알고리즘
+// - Mazes For Programmers
 void Board::GenerateMap()
 {
+	for (int32 y = 0; y < _size; y++)
+	{
+		for (int32 x = 0; x < _size; x++)
+		{
+			if (x % 2 == 0 || y % 2 == 0)
+				_tile[y][x] = TileType::WALL;
+			else
+				_tile[y][x] = TileType::EMPTY;
+		}
+	}
 
+	// 랜덤으로 우측 혹은 아래로 길을 뚫는 작업
+	for (int32 y = 0; y < _size; y++)
+	{
+		for (int32 x = 0; x < _size; x++)
+		{
+			// WALL 이라면 skip 
+			if (x % 2 == 0 || y % 2 == 0)
+				continue;
+
+			// 목표 지점
+			if (y == _size - 2 && x == _size - 2)
+				continue;
+
+			// 하단 도달: 우측으로 뚫기
+			if (y == _size - 2)
+			{
+				_tile[y][x + 1] = TileType::EMPTY;
+				continue;
+			}
+
+			// 우측에 도달: 하단으로 뚫기
+			if (x == _size - 2)
+			{
+				_tile[y + 1][x] = TileType::EMPTY;
+				continue;
+			}
+
+			// 랜덤으로
+			const int32 randValue = ::rand() % 2;
+			if (randValue == 0)
+				_tile[y][x + 1] = TileType::EMPTY;
+			else
+				_tile[y + 1][x] = TileType::EMPTY;
+		}
+	}
 }
 
 TileType Board::GetTyileType(Pos pos)
 {
-	return TileType::NONE;
+	if (pos.x < 0 || pos.x >= _size)
+		return TileType::NONE;
+	if (pos.y < 0 || pos.y >= _size)
+		return TileType::NONE;
+
+	return _tile[pos.y][pos.x];
 }
 
 ConsoleColor Board::GetTileColor(Pos pos)
 {
-	return ConsoleColor::RED;
+	if (_player && _player->GetPos() == pos)
+		return ConsoleColor::PURPLE;
+
+	if (GetExitPos() == pos) // 탈출구 
+		return ConsoleColor::RED;
+
+	TileType tileType = GetTyileType(pos);
+	switch(tileType)
+	{
+		// 갈 수 있는 지역
+		case TileType::EMPTY:
+			return ConsoleColor::WHITE;
+		// 막혀있는 벽
+		case TileType::WALL:
+			return ConsoleColor::SKYBLUE;
+	}
+
+	return ConsoleColor::SKYBLUE; 
 }

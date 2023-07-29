@@ -13,13 +13,14 @@ enum class TileType
 	WALL
 };
 
+class Player; // 전방선언
 class Board
 {
 public:
 	Board();
 	~Board();
 
-	void         Init(int32 size);
+	void         Init(int32 size, Player* player);
 	void         Render();
 
 	void         GenerateMap();
@@ -32,5 +33,6 @@ public:
 private:
 	TileType   _tile[BOARD_MAX_SIZE][BOARD_MAX_SIZE];
 	int32      _size = 0;
+	Player*    _player = nullptr;
 };
 

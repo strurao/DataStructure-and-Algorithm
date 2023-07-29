@@ -4,11 +4,12 @@
 enum class ConsoleColor
 {
 	BLACK = 0,
+	PURPLE = 0x0005,
+	SKYBLUE = 0x0003,
 	RED = FOREGROUND_RED,
 	GREEN = FOREGROUND_GREEN,
-	BLUE = FOREGROUND_BLUE,
-	YELLOW = RED | GREEN,
-	WHITE = RED | GREEN | BLUE
+	YELLOW = 0x0006,
+	WHITE = 0x0007
 };
 
 class ConsoleHelper
