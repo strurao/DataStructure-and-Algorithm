@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include "List.h"
+#include "Vector.h"
 
 int main()
 {
@@ -19,5 +20,8 @@ int main()
 		list.Print();
 	}
 
+	{
+		// Vector v;
+	}
 }
 

@@ -18,15 +18,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Maze.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="List.cpp">
       <Filter>DataStructure</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector.cpp">
+      <Filter>DataStructure</Filter>
+    </ClCompile>
+    <ClCompile Include="Maze.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="List.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector.h">
       <Filter>DataStructure</Filter>
     </ClInclude>
   </ItemGroup>
