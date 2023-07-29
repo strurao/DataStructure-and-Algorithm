@@ -1,4 +1,6 @@
 #pragma once
+#include <iostream>
+using namespace std;
 
 class Node 
 {
@@ -42,8 +44,19 @@ public:
 		}
 	}
 	
+	void Print()
+	{
+		Node* node = _head->next; // cursor
+		while (node != _tail)
+		{
+			cout << node->data << " ";
+			node = node->next;
+		}
+		cout << endl;
+	}
+
 	// no dummy ver.
-	// [head]		[tail]
+	// [head]    [tail]
 	Node* AddAtHead(int data)
 	{
 		Node* node = new Node(data);
@@ -62,9 +75,9 @@ public:
 		}
 	}
 
-	//		[node]
+	//      [node]
 	// [dummy]<->[nextNode]<->[2]<->[3]<->[dummy]
-	// [head]						      [tail]
+	// [head]                             [tail]
 	Node* AddAtHead_dummy(int data)
 	{
 		Node* node = new Node(data);
@@ -74,6 +87,24 @@ public:
 		nextNode->prev = node;
 		_head->next = node;
 		node->prev = _head;
+
+		return node;
+	}
+
+	//                                 [node]
+	// [dummy]<->[1]<->[2]<->[prevNode]<->[dummy]
+	// [head]                             [tail]
+	Node* AddAtTail(int data)
+	{
+		Node* node = new Node(data);
+		Node* prevNode = _tail->prev;
+
+		prevNode->next = node;
+		node->prev = prevNode;
+		node->next = _tail;
+		_tail->prev = node;
+
+		return node;
 	}
 
 private:
