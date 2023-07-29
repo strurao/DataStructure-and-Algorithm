@@ -2,10 +2,11 @@
 #include <iostream>
 using namespace std;
 
+template <typename T>
 class Node 
 {
 	// typedef int T;
-	using T = int; // template 으로 바꿀 예정
+	// using T = int; // template 으로 바꿀 예정
 
 public:
 	Node(int data) : data(data), prev(nullptr), next(nullptr){}
@@ -16,21 +17,22 @@ public:
 	Node* next;
 };
 
+template <typename T>
 class List
 {
 public:
 	List()
 	{
 		// dummy 
-		_head = new Node(0);
-		_tail = new Node(0);
+		_head = new Node<T>(0);
+		_tail = new Node<T>(0);
 		_head->next = _tail;
 		_tail->prev = _head;
 	}
 
 	~List()
 	{
-		Node* node = _head;
+		Node<T>* node = _head;
 		while (node)
 		{
 			/*
@@ -38,7 +40,7 @@ public:
 			Node* nextNode = node->next;
 			node = nextNode;
 			*/
-			Node* deleteNode = node;
+			Node<T>* deleteNode = node;
 			node = node->next;
 			delete deleteNode;
 		}
@@ -51,9 +53,9 @@ public:
 	연결리스트의 특성상 특정 노드 위치가 저장되어있지 않다면 
 	선형탐색을 해야하므로 시간복잡도가 O(N)이기 때문이다.
 	*/
-	Node* GetNode(int index)
+	Node<T>* GetNode(int index)
 	{
-		Node* node = _head->next;
+		Node<T>* node = _head->next;
 		if (node == _tail)
 			return nullptr;
 
@@ -81,9 +83,9 @@ public:
 
 	// no dummy ver.
 	// [head]    [tail]
-	Node* AddAtHead(int data)
+	Node<T>* AddAtHead(int data)
 	{
-		Node* node = new Node(data);
+		Node<T>* node = new Node<T>(data);
 		
 		if (_head == nullptr)
 		{
@@ -92,7 +94,7 @@ public:
 		}
 		else
 		{
-			Node* nextNode = _head;
+			Node<T>* nextNode = _head;
 			node->next = nextNode;
 			nextNode->prev = node;
 			_head = node;
@@ -102,10 +104,10 @@ public:
 	//      [node]
 	// [dummy]<->[nextNode]<->[2]<->[3]<->[dummy]
 	// [head]                             [tail]
-	Node* AddAtHead_dummy(int data)
+	Node<T>* AddAtHead_dummy(int data)
 	{
-		Node* node = new Node(data);
-		Node* nextNode = _head->next;
+		Node<T>* node = new Node<T>(data);
+		Node<T>* nextNode = _head->next;
 
 		node->next = nextNode;
 		nextNode->prev = node;
@@ -118,10 +120,10 @@ public:
 	//                                 [node]
 	// [dummy]<->[1]<->[2]<->[prevNode]<->[dummy]
 	// [head]                             [tail]
-	Node* AddAtTail(int data)
+	Node<T>* AddAtTail(int data)
 	{
-		Node* node = new Node(data);
-		Node* prevNode = _tail->prev;
+		Node<T>* node = new Node<T>(data);
+		Node<T>* prevNode = _tail->prev;
 
 		prevNode->next = node;
 		node->prev = prevNode;
@@ -134,10 +136,10 @@ public:
 	//                   [node]
 	// [dummy]<->[prevNode]<->[posNode]<->[3]<->[dummy]
 	// [head]                                   [tail]
-	void Insert(Node* posNode, int data)
+	void Insert(Node<T>* posNode, int data)
 	{
-		Node* node = new Node(data);
-		Node* prevNode = posNode->prev;
+		Node<T>* node = new Node<T>(data);
+		Node<T>* prevNode = posNode->prev;
 
 		prevNode->next = node;
 		node->prev = prevNode;
@@ -147,10 +149,10 @@ public:
 
 	// [dummy]<->[prevNode]<->[node]<->[nextNode]<->[3]<->[dummy]
 	// [head]                                             [tail]
-	Node* Remove(Node* node)
+	Node<T>* Remove(Node<T>* node)
 	{
-		Node* prevNode = node->prev;
-		Node* nextNode = node->next;
+		Node<T>* prevNode = node->prev;
+		Node<T>* nextNode = node->next;
 		prevNode->next = nextNode;
 		nextNode->prev = prevNode;
 
@@ -160,7 +162,7 @@ public:
 	}
 
 private:
-	Node* _head = nullptr;
-	Node* _tail = nullptr;
+	Node<T>* _head = nullptr;
+	Node<T>* _tail = nullptr;
 };
 

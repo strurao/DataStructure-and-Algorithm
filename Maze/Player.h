@@ -23,13 +23,13 @@ private:
 	void CalculatePath();
 
 private:
-	Pos _pos;
-	int32 _dir = DIR_UP;
-	Board* _board = nullptr;
+	Pos         _pos;
+	int32       _dir = DIR_UP;
+	Board*      _board = nullptr;
 
 	// 동적배열
-	Vector _path; // {(1,1), (2,2), (3,3), ..}
-	int32 _pathIndex; 
-	uint64 _sumTick = 0;
+	Vector<Pos> _path; // {(1,1), (2,2), (3,3), ..}
+	int32       _pathIndex; 
+	uint64      _sumTick = 0;
 };
 
