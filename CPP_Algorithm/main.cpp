@@ -71,10 +71,10 @@ void PrintTree(Node* root, int depth = 0)
 	cout << root->data << endl;
 
 	int size = root->children.size();
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i < size; i++) // 간접적인 기저사항 : 리프의 size는 0 이므로 알아서 종료된다.
 	{
 		Node* node = root->children[i];
-		PrintTree(node, depth + 1);
+		PrintTree(node, depth + 1); 
 	}
 }
 
@@ -87,7 +87,7 @@ int GetHeight(Node* root)
 	for (int i = 0; i < size; i++)
 	{
 		Node* node = root->children[i];
-		int h = GetHeight(node) + 1;
+		int h = GetHeight(node) + 1; // 루트를 포함하기 위해 +1 을 해준다.
 
 		if (ret < h)
 			ret = h;
