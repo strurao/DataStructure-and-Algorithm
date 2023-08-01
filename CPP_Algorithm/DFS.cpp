@@ -40,7 +40,7 @@ void CreateGraph()
 
 }
 
-void Dfs(int here)
+void Dfs(int here) // 그래프의 특성상 시작점을 넣어준다
 {
 	// 방문 도장
 	visited[here] = true;
@@ -100,7 +100,7 @@ int main()
 */
 
 /*
-C++에서 깊이 우선 탐색(Depth-First Search, DFS)을 구현할 때 인접 행렬과 인접 리스트를 사용할 수 있습니다. 
+* C++에서 깊이 우선 탐색(Depth-First Search, DFS)을 구현할 때 인접 행렬과 인접 리스트를 사용할 수 있습니다. 
 이 경우, 모든 정점의 쌍에 대해 간선의 존재 여부를 확인해야하므로 시간 복잡도는 다음과 같습니다. 
 
 인접리스트:
