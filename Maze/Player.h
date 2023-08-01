@@ -20,7 +20,8 @@ public:
 	bool CanGo(Pos pos);
 
 private:
-	void CalculatePath();
+	void CalculatePath_RightHand();
+	void CalculatePath_BFS();
 
 private:
 	Pos         _pos;
@@ -28,7 +29,7 @@ private:
 	Board*      _board = nullptr;
 
 	// 동적배열
-	Vector<Pos> _path; // {(1,1), (2,2), (3,3), ..}
+	vector<Pos> _path; // {(1,1), (2,2), (3,3), ..}
 	int32       _pathIndex; 
 	uint64      _sumTick = 0;
 };
