@@ -24,7 +24,6 @@ void CreateGraph_Dijikstr()
 	adjacent_dijikstra[1][3] = adjacent_dijikstra[3][1] = 10;
 	adjacent_dijikstra[3][4] = adjacent_dijikstra[4][3] = +5;
 	adjacent_dijikstra[5][4] = adjacent_dijikstra[4][5] = +5;
-
 }
 
 struct VertexCost
@@ -100,3 +99,7 @@ int main()
 	CreateGraph_Dijikstr();
 	Dijikstra(0);
 }
+
+/*
+BFS, 다익스트라는 목적지의 개념이 없다.
+*/
