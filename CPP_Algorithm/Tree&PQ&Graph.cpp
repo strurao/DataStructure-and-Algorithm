@@ -112,10 +112,10 @@ public:
 	void push(const T& data)
 	{
 		// 우선 힙 구조부터 맞춰준다
-		_heap.push_back)back(data);
+		_heap.push_back(data);
 
 		// 도장깨기 시작
-		int now = static_cast<int>(_haep.size()) - 1;
+		int now = static_cast<int>(_heap.size()) - 1;
 
 		// 루트 노드까지
 		while (now > 0)
@@ -305,8 +305,8 @@ void CreateGraph_3()
 }
 
 
-int main()
-{
+//int main()
+//{
 	/*
 	트리
 	Node* root = CreateTree();
@@ -327,7 +327,6 @@ int main()
 	pq.pop();
 	*/
 
-	
 	/*
 	결국 우리는 순회를 해야 한다 
 	그래프 순회는 어떻게 해야할까? 트리는 재귀, 벡터는 쭉 선형탐색하면 된다.
@@ -335,5 +334,4 @@ int main()
 	규칙이 필요하다.
 	그래서 DFS, BFS 의 필요성이 대두된다.
 	*/
-
-}
+//}
