@@ -110,9 +110,10 @@ void BfsAll()
 			Bfs(i);
 }
 
+/*
 int main()
 {
 	CreateGraph_bfs();
 	BfsAll();
 }
-
+*/

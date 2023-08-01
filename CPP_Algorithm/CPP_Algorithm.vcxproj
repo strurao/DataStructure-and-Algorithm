@@ -130,6 +130,7 @@
   <ItemGroup>
     <ClCompile Include="BFS.cpp" />
     <ClCompile Include="DFS.cpp" />
+    <ClCompile Include="Dijikstra.cpp" />
     <ClCompile Include="Tree&amp;PQ&amp;Graph.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
