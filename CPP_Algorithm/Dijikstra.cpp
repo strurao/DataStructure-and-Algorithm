@@ -68,11 +68,11 @@ void Dijikstra(int here)
 		int cost = v.cost;
 		here = v.vertex;
 
-		// 더 좋은(짧은) 경로를 뒤늦게 찾았다면 skip
+		// 내가 꺼내는 cost보다 다른 애가 더 좋은(짧은) 경로를 찾았었다면 나를 폐기(skip)
 		if (best[here] < cost)
 			continue;
 
-		// 방문
+		// 여기까지 왔다면 살아남은 것. 이제는 뒤늦게라도 새치기당하지 않을 수 있다. 방문 가능!
 		// if (best[here] >= cost)
 		cout << "Dijikstra 방문 : " << here << endl;
 
@@ -83,14 +83,15 @@ void Dijikstra(int here)
 				continue;
 
 			// 더 좋은 경로를 과거에 찾았으면 스킵
-			int nextCost = best[here] + adjacent_dijikstra[here][there];
+			// there 까지 이동하는데 소요되는 비용 : nextCost
+			int nextCost = best[here] + adjacent_dijikstra[here][there]; // 15 + 10
 			if (nextCost >= best[there])
 				continue;
 
 			// 지금까지 찾은 경로 중에서는 최선의 수치 = 갱신
 			// if ( nextCost < best[there] )
 			best[there] = nextCost;
-			parent[there] = here; // 나중에 갱신될 수 있음
+			parent[there] = here; // 나중에라도 더 좋은 경우가 있다면 갱신될 수 있음 // 35 -> 15+10
 			pq.push(VertexCost(nextCost, there));
 		}
 	}
