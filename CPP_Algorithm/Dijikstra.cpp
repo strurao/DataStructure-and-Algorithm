@@ -92,7 +92,7 @@ void Dijikstra(int here)
 			// if ( nextCost < best[there] )
 			best[there] = nextCost;
 			parent[there] = here; // 나중에라도 더 좋은 경우가 있다면 갱신될 수 있음 // 35 -> 15+10
-			pq.push(VertexCost(nextCost, there));
+			pq.push(VertexCost(nextCost, there)); // 최종 심판 역할은 우선순위 큐. 최솟값을 갱신해준다.
 		}
 	}
 }
