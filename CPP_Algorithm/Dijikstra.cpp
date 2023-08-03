@@ -18,7 +18,7 @@ void CreateGraph_Dijikstr()
 {
 	vertices.resize(6);
 	adjacent_dijikstra = vector<vector<int>>(6, vector<int>(6, -1));
-	adjacent_dijikstra[0][1] = adjacent_dijikstra[1][0] = 15; // 양방향
+	adjacent_dijikstra[0][1] = adjacent_dijikstra[1][0] = 15; // 가중치 15인 양방향 간선
 	adjacent_dijikstra[0][3] = adjacent_dijikstra[3][0] = 35;
 	adjacent_dijikstra[1][2] = adjacent_dijikstra[2][1] = +5;
 	adjacent_dijikstra[1][3] = adjacent_dijikstra[3][1] = 10;
@@ -48,7 +48,7 @@ struct VertexCost
 
 void Dijikstra(int here)
 {
-	priority_queue<VertexCost, vector<VertexCost>, greater<VertexCost>> pq;
+	priority_queue<VertexCost, vector<VertexCost>, greater<VertexCost>> pq; // 비용이 적은 순서대로 저장하도록 설정
 
 	vector<int> best(6, INT32_MAX); // 시작점에서 각 정점별까지의 베스트 케이스 (최단거리)
 
@@ -73,6 +73,7 @@ void Dijikstra(int here)
 			continue;
 
 		// 방문
+		// if (best[here] >= cost)
 		cout << "Dijikstra 방문 : " << here << endl;
 
 		for (int there = 0; there < 6; there++)
@@ -86,7 +87,8 @@ void Dijikstra(int here)
 			if (nextCost >= best[there])
 				continue;
 
-			// 지금까지 찾은 경로 중에서느 최선의 수치 = 갱신
+			// 지금까지 찾은 경로 중에서는 최선의 수치 = 갱신
+			// if ( nextCost < best[there] )
 			best[there] = nextCost;
 			parent[there] = here; // 나중에 갱신될 수 있음
 			pq.push(VertexCost(nextCost, there));
