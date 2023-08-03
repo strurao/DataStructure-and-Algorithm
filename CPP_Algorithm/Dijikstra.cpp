@@ -11,12 +11,12 @@ struct Vertex
 	// int data;
 };
 
-vector<Vertex> vertices;
+vector<Vertex> vertices_dijikstra;
 vector<vector<int>> adjacent_dijikstra;
 
 void CreateGraph_Dijikstr()
 {
-	vertices.resize(6);
+	vertices_dijikstra.resize(6);
 	adjacent_dijikstra = vector<vector<int>>(6, vector<int>(6, -1));
 	adjacent_dijikstra[0][1] = adjacent_dijikstra[1][0] = 15; // 가중치 15인 양방향 간선
 	adjacent_dijikstra[0][3] = adjacent_dijikstra[3][0] = 35;
@@ -96,12 +96,13 @@ void Dijikstra(int here)
 	}
 }
 
+/*
 int main()
 {
 	CreateGraph_Dijikstr();
 	Dijikstra(0);
 }
-
+*/
 /*
 BFS, 다익스트라는 목적지의 개념이 없다.
 */
